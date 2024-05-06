@@ -29,6 +29,21 @@ app.get('/person', async(req,res)=>{
         res.status(500).json({error: "Internal Server Error"})
     }
 })
+app.get('/person/:workType', async(req,res)=>{
+    try {
+        const workType= req.params.workType;
+        if (workType=="Batman" || workType=="Postman" || workType=="Serviceman"){
+            const response = await Person.find({work:workType})
+            console.log("Response Fetched");
+            res.status(200).json(response)
+        }
+        else{
+            res.status(404).json({error: "Invalid work type"})
+        }
+    } catch (error) {
+        res.status(500).json({error: "Internal Server Error"})
+    }
+})
 app.listen(3000)
 
 
