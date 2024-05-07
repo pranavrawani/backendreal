@@ -10,13 +10,12 @@ const logRequest= (req,res,next)=>{
 }
 const localAuthMiddleware= passport.authenticate('local', {session:false})
 app.use(passport.initialize());
-app.use(localAuthMiddleware)
+// app.use(localAuthMiddleware)
 app.use(logRequest)
 app.use(bodyParser.json())
 app.get('/',(req,res)=>{
     res.send("Front page")
 })
-
 app.post('/person', async(req,res)=>{
     try{
         const data= req.body
