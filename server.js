@@ -3,6 +3,15 @@ const app= express();
 const db= require('./db')
 const bodyParser= require('body-parser')
 const Person= require('./models/person')
+const passport= require('./auth')
+const logRequest= (req,res,next)=>{
+    console.log(`[${new Date().toLocaleString()}] Request made to : ${req.originalUrl}`);
+    next();
+}
+const localAuthMiddleware= passport.authenticate('local', {session:false})
+app.use(passport.initialize());
+app.use(localAuthMiddleware)
+app.use(logRequest)
 app.use(bodyParser.json())
 app.get('/',(req,res)=>{
     res.send("Front page")

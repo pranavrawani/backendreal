@@ -12,6 +12,12 @@ const personSchema= new mongoose.Schema({
     work:{
         type: String,
         enum: ['Serviceman', 'Postman', 'Batman']
+    },
+    username:{
+        type:String
+    },
+    password:{
+        type: String
     }
 });
 
