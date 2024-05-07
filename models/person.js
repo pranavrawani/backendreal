@@ -34,6 +34,15 @@ personSchema.pre('save', async function(next){
         return next(error)
     }
 })
+
+personSchema.methods.comparePassword= async function(candidatePassword){
+    try {
+        const isMatch= await bcrypt.compare(candidatePassword, this,password);
+        return isMatch;
+    } catch (error) {
+        throw error
+    }
+}
 // Person Model
 const Person= mongoose.model('Person', personSchema)
 module.exports= Person;
