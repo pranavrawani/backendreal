@@ -1,5 +1,5 @@
 const mongoose= require ('mongoose');
-const mongoURL= 'mongodb://localhost:27017/pranav'
+const mongoURL= 'mongodb+srv://pranavrawani2839:pranav@cluster0.v7esao6.mongodb.net/'
 
 mongoose.connect(mongoURL,{
     useNewUrlParser:true,
